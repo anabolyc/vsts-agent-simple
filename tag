@@ -1,0 +1,1 @@
+andreymalyshenko/vsts-agent:powershell
