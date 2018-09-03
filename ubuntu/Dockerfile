@@ -31,6 +31,9 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     powershell \
  && rm -rf /var/lib/apt/lists/*
 
+# Accept EULA - needed for certain Microsoft packages like SQL Server Client Tools
+ENV ACCEPT_EULA=Y
+
 
 
 

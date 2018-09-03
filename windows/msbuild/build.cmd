@@ -1,0 +1,1 @@
+docker build . -t andreymalyshenko/vsts-agent:ltsc2016-msbuild
