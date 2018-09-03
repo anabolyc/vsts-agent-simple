@@ -1,0 +1,2 @@
+docker tag andreymalyshenko/vsts-agent:ltsc2016-msbuild vstsagentregistry.azurecr.io/andreymalyshenko/vsts-agent:ltsc2016-msbuild
+docker push vstsagentregistry.azurecr.io/andreymalyshenko/vsts-agent:ltsc2016-msbuild
