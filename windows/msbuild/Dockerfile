@@ -23,4 +23,18 @@ RUN choco install \
     --timeout 3600 \
     && rmdir /S /Q C:\chococache
 
+
+RUN choco install \
+    netfx-4.5.2-devpack \
+    --confirm \
+    --verbose \
+    --timeout 7200 \
+    && rmdir /S /Q C:\chococache
+    
+RUN choco install \
+    visualstudio2017-workload-office \
+    --confirm \
+    --timeout 3600 \
+    && rmdir /S /Q C:\chococache
+
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
