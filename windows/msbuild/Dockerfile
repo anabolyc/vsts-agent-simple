@@ -30,39 +30,30 @@ RUN choco install \
     --timeout 3600 \
     && rmdir /S /Q C:\chococache
 
-# # netfx-4.5
-# RUN choco install \
-#      windows-sdk-8.0 \
-#      --confirm \
-#      --timeout 7200 \
-#      && rmdir /S /Q C:\chococache
-
-# # netfx-4.5.1
-# RUN choco install \
-#      windows-sdk-8.1 \
-#      --confirm \
-#      --timeout 7200 \
-#      && rmdir /S /Q C:\chococache
+RUN choco install \
+    msdeploy msdeploy3 webdeploy \
+    --confirm \
+    --timeout 3600 \
+    && rmdir /S /Q C:\chococache
 
 # RUN choco install \
-#     netfx-4.5.1-devpack \
+#     visualstudio2017enterprise \
+#     --package-parameters "--passive --locale en-US" \
 #     --confirm \
-#     --timeout 7200 \
-#     && rmdir /S /Q C:\chococache
-
-# RUN choco install \
-#     visualstudio2017-workload-office \
-#     --confirm \
-#     --timeout 3600 \
+#     --limit-output \
+#     --timeout 21600 \
 #     && rmdir /S /Q C:\chococache
 
 ADD [ "msbuild-microsoft.tar.gz",  "C:/Program Files (x86)/MSBuild/"]
 ADD [ "MSBuild.exe.config",  "C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/MSBuild/15.0/Bin/"]
+ADD [ "Nuget.tar.gz",  "C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/Common7/IDE/CommonExtensions"]
 
 ADD [ "v4.5.tar.gz",  "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework"]
 ADD [ "v4.5.1.tar.gz",  "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework"]
 ADD [ "v4.5.2.tar.gz",  "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework"]
 ADD [ "v4.6.tar.gz",  "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework"]
 ADD [ "v4.6.1.tar.gz",  "C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework/.NETFramework"]
+
+#SHELL ["C:/Program Files (x86)/Microsoft Visual Studio/Installer/vs_installer.exe", "modify", "--installPath", "C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools", "--quiet", "--add", "Microsoft.VisualStudio.Component.NuGet.BuildTools", "--norestart", "--force"]
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
