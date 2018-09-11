@@ -1,0 +1,1 @@
+docker build . -t andreymalyshenko/win-nanoserver-choco:sac2016
