@@ -68,7 +68,7 @@ Get-ToolsLocation
 #>
 param(
   [parameter(Mandatory=$true, Position=0)][string] $pathToInstall,
-  [parameter(Mandatory=$false, Position=1)][System.EnvironmentVariableTarget] $pathType = [System.EnvironmentVariableTarget]::User,
+  [parameter(Mandatory=$false, Position=1)][string] $pathType = "User",
   [parameter(ValueFromRemainingArguments = $true)][Object[]] $ignoredArguments
 )
 
@@ -98,7 +98,7 @@ param(
     if (!$pathToInstall.EndsWith($statementTerminator)) {$pathToInstall = $pathToInstall + $statementTerminator}
     $actualPath = $actualPath + $pathToInstall
 
-    if ($pathType -eq [System.EnvironmentVariableTarget]::Machine) {
+    if ($pathType -eq "Machine") {
       if (Test-ProcessAdminRights) {
         Set-EnvironmentVariable -Name 'Path' -Value $actualPath -Scope $pathType
       } else {

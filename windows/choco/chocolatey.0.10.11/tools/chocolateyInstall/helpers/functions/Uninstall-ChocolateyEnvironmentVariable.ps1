@@ -73,14 +73,13 @@ Install-ChocolateyPath
 #>
 param(
   [parameter(Mandatory=$true, Position=0)][string] $variableName,
-  [parameter(Mandatory=$false, Position=1)]
-  [System.EnvironmentVariableTarget] $variableType = [System.EnvironmentVariableTarget]::User,
+  [parameter(Mandatory=$false, Position=1)][string] $variableType = "User",
   [parameter(ValueFromRemainingArguments = $true)][Object[]] $ignoredArguments
 )
 
   Write-FunctionCallLogMessage -Invocation $MyInvocation -Parameters $PSBoundParameters
 
-  if ($variableType -eq [System.EnvironmentVariableTarget]::Machine) {
+  if ($variableType -eq "Machine") {
     if (Test-ProcessAdminRights) {
       Set-EnvironmentVariable -Name $variableName -Value $null -Scope $variableType
     } else {

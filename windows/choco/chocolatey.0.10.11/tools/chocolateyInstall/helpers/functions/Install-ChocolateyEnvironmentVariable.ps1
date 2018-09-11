@@ -90,15 +90,14 @@ Install-ChocolateyPath
 param(
   [parameter(Mandatory=$false, Position=0)][string] $variableName,
   [parameter(Mandatory=$false, Position=1)][string] $variableValue,
-  [parameter(Mandatory=$false, Position=2)]
-  [System.EnvironmentVariableTarget] $variableType = [System.EnvironmentVariableTarget]::User,
+  [parameter(Mandatory=$false, Position=2)][string] $variableType = "User",
   [parameter(ValueFromRemainingArguments = $true)][Object[]] $ignoredArguments
 )
 
   Write-FunctionCallLogMessage -Invocation $MyInvocation -Parameters $PSBoundParameters
   ## Called from chocolateysetup.psm1 - wrap any Write-Host in try/catch
 
-  if ($variableType -eq [System.EnvironmentVariableTarget]::Machine) {
+  if ($variableType -eq "Machine") {
     if (Test-ProcessAdminRights) {
       Set-EnvironmentVariable -Name $variableName -Value $variableValue -Scope $variableType
     } else {
@@ -111,7 +110,7 @@ param(
     } catch {
       if (Test-ProcessAdminRights) {
         # HKCU:\Environment may not exist, which happens sometimes with Server Core
-        Set-EnvironmentVariable -Name $variableName -Value $variableValue -Scope Machine
+        Set-EnvironmentVariable -Name $variableName -Value $variableValue -Scope "Machine"
       } else {
         throw $_.Exception
       }

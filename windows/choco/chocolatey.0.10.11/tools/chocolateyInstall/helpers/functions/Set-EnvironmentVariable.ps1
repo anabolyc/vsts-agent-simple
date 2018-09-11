@@ -58,21 +58,20 @@ Get-EnvironmentVariable
 param (
   [parameter(Mandatory=$true, Position=0)][string] $Name,
   [parameter(Mandatory=$false, Position=1)][string] $Value,
-  [parameter(Mandatory=$false, Position=2)]
-  [System.EnvironmentVariableTarget] $Scope,
+  [parameter(Mandatory=$false, Position=2)][string] $Scope,
   [parameter(ValueFromRemainingArguments = $true)][Object[]] $ignoredArguments
 )
 
   Write-FunctionCallLogMessage -Invocation $MyInvocation -Parameters $PSBoundParameters
 
-  if ($Scope -eq [System.EnvironmentVariableTarget]::Process -or $Value -eq $null -or $Value -eq '') {
-    return [Environment]::SetEnvironmentVariable($Name, $Value, $Scope)
+  if ($Scope -eq "Process" -or $Value -eq $null -or $Value -eq '') {
+    return [Environment]::SetEnvironmentVariable($Name, $Value)
   }
 
   [string]$keyHive = 'HKEY_LOCAL_MACHINE'
   [string]$registryKey = "SYSTEM\CurrentControlSet\Control\Session Manager\Environment\"
   [Microsoft.Win32.RegistryKey] $win32RegistryKey = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($registryKey)
-  if ($Scope -eq [System.EnvironmentVariableTarget]::User) {
+  if ($Scope -eq "User") {
     $keyHive = 'HKEY_CURRENT_USER'
     $registryKey = "Environment"
     [Microsoft.Win32.RegistryKey] $win32RegistryKey = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey($registryKey)

@@ -12,7 +12,8 @@ RUN @powershell -Command "$ErrorActionPreference = 'Stop'; $ProgressPreference =
 COPY ["install.ps1", "C:/temp"]
 COPY ["chocolatey.0.10.11", "C:/temp/choco-install"]
 
-RUN @powershell -File "install.ps1" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+RUN @powershell -File "install.ps1"
+# && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 ## TODO: uncomment below
 # RUN choco config set cachelocation C:\chococache

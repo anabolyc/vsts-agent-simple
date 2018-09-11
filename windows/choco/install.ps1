@@ -26,7 +26,7 @@ Get-Content $chocInstallPS1 | Write-Host
 # $chocoExePath = Join-Path $chocoPath 'bin'
 
 # if ($($env:Path).ToLower().Contains($($chocoExePath).ToLower()) -eq $false) {
-#   $env:Path = [Environment]::GetEnvironmentVariable('Path',[System.EnvironmentVariableTarget]::Machine);
+#   $env:Path = [Environment]::GetEnvironmentVariable('Path', "Machine");
 # }
 
 # Write-Output 'Ensuring chocolatey.nupkg is in the lib folder'
