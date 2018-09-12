@@ -73,6 +73,7 @@ RUN choco install \
     visualstudio2017-workload-netweb \
 #    visualstudio2017-workload-azure \
 #    visualstudio2017-workload-netcoretools \
+    visualstudio2017-workload-office \
     --confirm \
     --limit-output \
 #    --package-parameters "--includeOptional" \

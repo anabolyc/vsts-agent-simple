@@ -1,0 +1,2 @@
+docker tag andreymalyshenko/vsts-agent:ltsc2016-basic vstsagentregistry.azurecr.io/andreymalyshenko/vsts-agent:ltsc2016-basic
+docker push vstsagentregistry.azurecr.io/andreymalyshenko/vsts-agent:ltsc2016-basic
