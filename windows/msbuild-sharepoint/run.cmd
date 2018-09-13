@@ -1,0 +1,1 @@
+docker run -ti --rm andreymalyshenko/vsts-agent:ltsc2016-msbuild-sp powershell
